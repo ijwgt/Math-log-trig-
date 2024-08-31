@@ -17,4 +17,15 @@ export default class MathClass {
 	set attack(value) {
 		this.attackedValue = value;
 	}
+
+	get attack() {
+		const attack = this.attackedValue - (this.distance - 1) * 10;
+		if (attack <= 0) {
+			return 0;
+		}
+		if (this.stoneStatus) {
+			return attack - Math.log2(this.distance) * 5;
+		}
+		return attack;
+	}
 }
